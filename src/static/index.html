@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Humanizer Pro - Transform AI Text to Human-Like Content</title>
+    <meta name="description" content="Professional AI writing humanizer that transforms AI-generated content into natural, human-like text. Upload documents, paste text, and choose from multiple output modes.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-robot"></i>
+                <span>AI Humanizer Pro</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button class="btn-primary nav-btn">Get Started</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Transform AI Text into 
+                    <span class="gradient-text">Human-Like Content</span>
+                </h1>
+                <p class="hero-description">
+                    Professional AI writing humanizer that converts AI-generated text into natural, 
+                    engaging content. Upload documents, paste text, and choose from multiple output modes 
+                    with unlimited usage and no word limits.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary btn-large" onclick="scrollToHumanizer()">
+                        <i class="fas fa-magic"></i>
+                        Start Humanizing
+                    </button>
+                    <button class="btn-secondary btn-large" onclick="scrollToFeatures()">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">1M+</span>
+                        <span class="stat-label">Texts Humanized</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Happy Users</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <div class="card-header">
+                        <i class="fas fa-robot"></i>
+                        <span>AI Text Input</span>
+                    </div>
+                    <div class="card-content">
+                        <p>The artificial intelligence system processes data efficiently...</p>
+                    </div>
+                </div>
+                <div class="arrow-animation">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="floating-card humanized">
+                    <div class="card-header">
+                        <i class="fas fa-user"></i>
+                        <span>Humanized Output</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Our AI system handles data processing with remarkable efficiency...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Humanizer Tool -->
+    <section id="humanizer" class="humanizer-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Text Humanizer</h2>
+                <p>Transform your AI-generated content into natural, human-like text</p>
+            </div>
+            
+            <div class="humanizer-tool">
+                <div class="tool-header">
+                    <div class="input-options">
+                        <button class="input-btn active" data-type="text">
+                            <i class="fas fa-keyboard"></i>
+                            Paste Text
+                        </button>
+                        <button class="input-btn" data-type="file">
+                            <i class="fas fa-file-upload"></i>
+                            Upload File
+                        </button>
+                    </div>
+                    <div class="output-modes">
+                        <label>Output Mode:</label>
+                        <select id="outputMode">
+                            <option value="fast">Fast</option>
+                            <option value="balanced" selected>Balanced</option>
+                            <option value="aggressive">Aggressive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tool-content">
+                    <div class="input-section">
+                        <div class="input-area" id="textInput">
+                            <textarea 
+                                placeholder="Paste your AI-generated text here..."
+                                id="inputText"
+                                rows="12"
+                            ></textarea>
+                            <div class="input-stats">
+                                <span id="charCount">0 characters</span>
+                                <span id="wordCount">0 words</span>
+                            </div>
+                        </div>
+                        <div class="file-upload" id="fileInput" style="display: none;">
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>Upload Document</h3>
+                                <p>Drag & drop your file here or click to browse</p>
+                                <p class="file-types">Supports: DOC, DOCX, PDF, TXT</p>
+                                <input type="file" id="fileInputElement" accept=".doc,.docx,.pdf,.txt" hidden>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-controls">
+                        <button class="btn-primary btn-large humanize-btn" id="humanizeBtn">
+                            <i class="fas fa-magic"></i>
+                            Humanize Text
+                        </button>
+                        <div class="advanced-options">
+                            <button class="btn-secondary" id="advancedBtn">
+                                <i class="fas fa-cog"></i>
+                                Advanced Options
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="output-section">
+                        <div class="output-header">
+                            <h3>Humanized Output</h3>
+                            <div class="output-actions">
+                                <button class="btn-icon" id="copyBtn" title="Copy to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="btn-icon" id="downloadBtn" title="Download as file">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="btn-icon" id="shareBtn" title="Share">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="output-area">
+                            <div class="output-placeholder" id="outputPlaceholder">
+                                <i class="fas fa-magic"></i>
+                                <p>Your humanized text will appear here...</p>
+                            </div>
+                            <div class="output-content" id="outputContent" style="display: none;">
+                                <div class="output-text" id="outputText"></div>
+                                <div class="output-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Humanization Score:</span>
+                                        <span class="stat-value" id="humanizationScore">--</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Processing Time:</span>
+                                        <span class="stat-value" id="processingTime">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features</h2>
+                <p>Everything you need to transform AI text into human-like content</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Unlimited Usage</h3>
+                    <p>No word limits, no usage restrictions. Humanize as much content as you need without any constraints.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Multiple File Formats</h3>
+                    <p>Support for DOC, DOCX, PDF, and TXT files. Upload documents directly or paste text for instant processing.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Output Modes</h3>
+                    <p>Choose from Fast, Balanced, or Aggressive modes to control the level of humanization for your content.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Privacy Protected</h3>
+                    <p>Your content is processed securely and never stored. Complete privacy and confidentiality guaranteed.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Advanced AI algorithms deliver humanized content in seconds, not minutes. Optimized for speed and quality.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Fully responsive design works perfectly on all devices. Humanize text on desktop, tablet, or mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple Pricing</h2>
+                <p>Choose the plan that works best for you</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 1,000 words/day</li>
+                        <li><i class="fas fa-check"></i> Basic humanization</li>
+                        <li><i class="fas fa-check"></i> Text input only</li>
+                        <li><i class="fas fa-times"></i> File uploads</li>
+                        <li><i class="fas fa-times"></i> Advanced modes</li>
+                    </ul>
+                    <button class="btn-secondary btn-full">Get Started</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">19</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited words</li>
+                        <li><i class="fas fa-check"></i> All humanization modes</li>
+                        <li><i class="fas fa-check"></i> File uploads</li>
+                        <li><i class="fas fa-check"></i> Priority processing</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                    </ul>
+                    <button class="btn-primary btn-full">Start Free Trial</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">99</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Team collaboration</li>
+                        <li><i class="fas fa-check"></i> Custom integrations</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                        <li><i class="fas fa-check"></i> SLA guarantee</li>
+                    </ul>
+                    <button class="btn-secondary btn-full">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About AI Humanizer Pro</h2>
+                    <p>
+                        AI Humanizer Pro is the leading platform for transforming AI-generated content into 
+                        natural, human-like text. Our advanced algorithms analyze and rewrite content to 
+                        eliminate robotic patterns while preserving meaning and context.
+                    </p>
+                    <p>
+                        Founded by a team of AI researchers and content specialists, we understand the 
+                        challenges of creating authentic, engaging content in the age of artificial intelligence. 
+                        Our mission is to bridge the gap between AI efficiency and human authenticity.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3>2M+</h3>
+                            <p>Documents Processed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>98%</h3>
+                            <p>Customer Satisfaction</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>24/7</h3>
+                            <p>Support Available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions? We'd love to hear from you</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>support@aihumanizerpro.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 AI Street, Tech City, TC 12345</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="subject" name="subject" required>
+                            <option value="">Select Subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="billing">Billing Question</option>
+                            <option value="partnership">Partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-robot"></i>
+                        <span>AI Humanizer Pro</span>
+                    </div>
+                    <p>Transform AI text into human-like content with our advanced humanization technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Integrations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Humanizer Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Advanced Options Modal -->
+    <div class="modal" id="advancedModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Advanced Options</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="option-group">
+                    <label>Creativity Level</label>
+                    <input type="range" id="creativityLevel" min="1" max="10" value="5">
+                    <div class="range-labels">
+                        <span>Conservative</span>
+                        <span>Creative</span>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label>Tone</label>
+                    <select id="toneSelect">
+                        <option value="neutral">Neutral</option>
+                        <option value="formal">Formal</option>
+                        <option value="casual">Casual</option>
+                        <option value="friendly">Friendly</option>
+                        <option value="professional">Professional</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label>Target Audience</label>
+                    <select id="audienceSelect">
+                        <option value="general">General</option>
+                        <option value="academic">Academic</option>
+                        <option value="business">Business</option>
+                        <option value="technical">Technical</option>
+                        <option value="creative">Creative</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="preserveFormatting">
+                        Preserve Original Formatting
+                    </label>
+                </div>
+                
+                <div class="option-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="enhanceReadability">
+                        Enhance Readability
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="resetOptions">Reset to Default</button>
+                <button class="btn-primary" id="applyOptions">Apply Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
